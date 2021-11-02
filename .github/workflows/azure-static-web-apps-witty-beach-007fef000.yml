@@ -31,11 +31,15 @@ jobs:
           echo "***************installed cli beta*******************"
           echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
       - name: 'Az CLI login'
+        id: azure_login
         uses: azure/login@v1.4.0
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
+      - name: output token
+        run: |
+          echo "The generated token is masked: ${{ step.azure_login.output }}"
       - uses: actions/checkout@v2
         with:
           submodules: true
