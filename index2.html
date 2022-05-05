@@ -5,9 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+
+    </script>
 </head>
 <body>
-    <button onclick="fetch('https://hoge0505fd-e7awfdc3g4bxgffc.z01.azurefd.net/image.png')">FrontDoor</button>
-    <button onclick="fetch('https://hoge0505.azurewebsites.net/image.png')">AppService</button>
+    <input type="button" value="FrontDoor" onclick="hoge('https://hoge0505fd-e7awfdc3g4bxgffc.z01.azurefd.net/image.png');" />
+    <input type="button" value="AppService" onclick="hoge('https://hoge0505.azurewebsites.net/image.png');" />
+    <script type="text/javascript">
+        function hoge(url)
+        {
+            const myHeaders = new Headers();
+            myHeaders.append('Content-Type', 'image/png');
+            const myInit = {
+                method: 'GET',
+                headers: myHeaders,
+                mode: 'cors',
+                cache: 'default'
+            };
+            fetch(url, myInit)
+        }
+    </script>
 </body>
 </html>
